@@ -4,7 +4,6 @@ class CoronaVirus {
     public diameter: number;
     public spikeCount: number;
     private id: string;
-
     constructor(positionX: number, positionY: number, diameter: number, spikeCount: number) {
         this.positionX = positionX;
         this.positionY = positionY;
@@ -12,7 +11,6 @@ class CoronaVirus {
         this.spikeCount = spikeCount;
         this.id = "id-" + positionX + "-" + positionY + "-" + diameter + "-" + spikeCount;
     }
-
     create() {
         //create virusBody
         document.body.innerHTML += '<div id="' + this.id + '" class="coronaVirus" style="left:' + (this.positionX - this.diameter / 2) + 'px; top:' + (this.positionY - this.diameter / 2) + 'px; width:' + this.diameter + 'px; height:' + this.diameter + 'px"></div>';
@@ -24,7 +22,6 @@ class CoronaVirus {
         return this.id;
     }
 }
-
 class Spike {
     private id: string;
     private diameter: number;
@@ -49,11 +46,9 @@ class Spike {
         document.getElementById(this.id).innerHTML += '<div class="spike" style="top:' + top + 'px; left:' + left + 'px; width: ' + dia + 'px; height: ' + dia + 'px"></div>';
     }
 }
-
 let coronaVirusIds : any;
 coronaVirusIds = [];
 let maxVirus = 10;
-
 function createVirus() {
     let coronaVirus = new CoronaVirus(getRndInteger(0, window.innerWidth), getRndInteger(0, window.innerHeight), getRndInteger(50, 400), getRndInteger(6, 32));
     let id = coronaVirus.create();
@@ -65,9 +60,7 @@ function createVirus() {
     }
     setTimeout(createVirus, 2000);
 }
-
 createVirus();
-
 function getRndInteger(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
