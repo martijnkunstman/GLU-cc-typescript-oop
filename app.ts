@@ -46,17 +46,16 @@ class Spike {
         let dia = this.diameter / (this.count / 2);
         let top = posX + Math.sin(this.angle * Math.PI / 180) * (this.diameter / 2 + dia / 2) - dia / 2;
         let left = posY + Math.cos(this.angle * Math.PI / 180) * (this.diameter / 2 + dia / 2) - dia / 2;
-
         document.getElementById(this.id).innerHTML += '<div class="spike" style="top:' + top + 'px; left:' + left + 'px; width: ' + dia + 'px; height: ' + dia + 'px"></div>';
     }
 }
 
 let coronaVirusIds : any;
 coronaVirusIds = [];
-let maxVirus = 20;
+let maxVirus = 10;
 
 function createVirus() {
-    let coronaVirus = new CoronaVirus(getRndInteger(0, window.innerWidth), getRndInteger(0, window.innerHeight), getRndInteger(100, 200), getRndInteger(6, 32));
+    let coronaVirus = new CoronaVirus(getRndInteger(0, window.innerWidth), getRndInteger(0, window.innerHeight), getRndInteger(50, 400), getRndInteger(6, 32));
     let id = coronaVirus.create();
     coronaVirusIds.push(id);
     if (coronaVirusIds.length > maxVirus) {
@@ -64,10 +63,10 @@ function createVirus() {
         el.remove();
         coronaVirusIds.shift();
     }
-    setTimeout(createVirus, 200);
+    setTimeout(createVirus, 2000);
 }
 
-setTimeout(createVirus, 200);
+createVirus();
 
 function getRndInteger(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1)) + min;

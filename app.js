@@ -40,9 +40,9 @@ var Spike = /** @class */ (function () {
 }());
 var coronaVirusIds;
 coronaVirusIds = [];
-var maxVirus = 20;
+var maxVirus = 10;
 function createVirus() {
-    var coronaVirus = new CoronaVirus(getRndInteger(0, window.innerWidth), getRndInteger(0, window.innerHeight), getRndInteger(100, 200), getRndInteger(6, 32));
+    var coronaVirus = new CoronaVirus(getRndInteger(0, window.innerWidth), getRndInteger(0, window.innerHeight), getRndInteger(50, 400), getRndInteger(6, 32));
     var id = coronaVirus.create();
     coronaVirusIds.push(id);
     if (coronaVirusIds.length > maxVirus) {
@@ -50,9 +50,9 @@ function createVirus() {
         el.remove();
         coronaVirusIds.shift();
     }
-    setTimeout(createVirus, 200);
+    setTimeout(createVirus, 2000);
 }
-setTimeout(createVirus, 200);
+createVirus();
 function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
