@@ -40,7 +40,7 @@ var Spike = /** @class */ (function () {
 }());
 var coronaVirusIds;
 coronaVirusIds = [];
-var maxVirus = 10;
+var maxVirus = 15;
 function createVirus() {
     var coronaVirus = new CoronaVirus(getRndInteger(0, window.innerWidth), getRndInteger(0, window.innerHeight), getRndInteger(50, 400), getRndInteger(6, 32));
     var id = coronaVirus.create();
@@ -50,7 +50,7 @@ function createVirus() {
         el.remove();
         coronaVirusIds.shift();
     }
-    setTimeout(createVirus, 2000);
+    setTimeout(createVirus, 500);
 }
 createVirus();
 function getRndInteger(min, max) {

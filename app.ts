@@ -58,7 +58,7 @@ function createVirus() {
         el.remove();
         coronaVirusIds.shift();
     }
-    setTimeout(createVirus, 1000);
+    setTimeout(createVirus, 500);
 }
 createVirus();
 function getRndInteger(min: number, max: number) {
