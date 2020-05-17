@@ -48,7 +48,7 @@ class Spike {
 }
 let coronaVirusIds : any;
 coronaVirusIds = [];
-let maxVirus = 10;
+let maxVirus = 15;
 function createVirus() {
     let coronaVirus = new CoronaVirus(getRndInteger(0, window.innerWidth), getRndInteger(0, window.innerHeight), getRndInteger(50, 400), getRndInteger(6, 32));
     let id = coronaVirus.create();
@@ -58,7 +58,7 @@ function createVirus() {
         el.remove();
         coronaVirusIds.shift();
     }
-    setTimeout(createVirus, 2000);
+    setTimeout(createVirus, 1000);
 }
 createVirus();
 function getRndInteger(min: number, max: number) {
