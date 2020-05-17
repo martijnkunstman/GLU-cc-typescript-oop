@@ -1,0 +1,11 @@
+.coronaVirus{
+    border-radius: 50%;
+    background: red;
+    position:absolute;
+}
+.spike{
+    /*border-radius: 50%;*/
+    background: black;
+    position:absolute;
+    border-radius: 50%;    
+}
