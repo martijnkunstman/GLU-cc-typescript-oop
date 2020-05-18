@@ -1,4 +1,7 @@
 "use strict";
+//
+// classes
+//
 var CoronaVirus = /** @class */ (function () {
     function CoronaVirus(positionX, positionY, diameter, spikeCount) {
         this.positionX = positionX;
@@ -8,7 +11,7 @@ var CoronaVirus = /** @class */ (function () {
         this.id = "id-" + positionX + "-" + positionY + "-" + diameter + "-" + spikeCount;
     }
     CoronaVirus.prototype.create = function () {
-        //create virusBody
+        //draw virusBody
         document.body.innerHTML += '<div id="' + this.id + '" class="coronaVirus" style="left:' + (this.positionX - this.diameter / 2) + 'px; top:' + (this.positionY - this.diameter / 2) + 'px; width:' + this.diameter + 'px; height:' + this.diameter + 'px"></div>';
         //create virusSpikes
         for (var a = 0; a < this.spikeCount; a++) {
@@ -28,7 +31,7 @@ var Spike = /** @class */ (function () {
         this.create();
     }
     Spike.prototype.create = function () {
-        //create virusSpike
+        //draw virusSpike
         var posX = this.diameter / 2;
         var posY = this.diameter / 2;
         var dia = this.diameter / (this.count / 2);
@@ -38,10 +41,20 @@ var Spike = /** @class */ (function () {
     };
     return Spike;
 }());
+//
+// helper functions
+//
+function getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+//
+// let's do it...
+//
 var coronaVirusIds;
 coronaVirusIds = [];
 var maxVirus = 15;
 function createVirus() {
+    //create coronaVirus
     var coronaVirus = new CoronaVirus(getRndInteger(0, window.innerWidth), getRndInteger(0, window.innerHeight), getRndInteger(50, 400), getRndInteger(6, 32));
     var id = coronaVirus.create();
     coronaVirusIds.push(id);
@@ -53,6 +66,3 @@ function createVirus() {
     setTimeout(createVirus, 500);
 }
 createVirus();
-function getRndInteger(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
