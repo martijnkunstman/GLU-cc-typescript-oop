@@ -12,22 +12,27 @@ var CoronaVirus = /** @class */ (function () {
     }
     CoronaVirus.prototype.create = function () {
         //draw virusBody
-        document.body.innerHTML += '<div id="' + this.id + '" class="coronaVirus" style="left:' + (this.positionX - this.diameter / 2) + 'px; top:' + (this.positionY - this.diameter / 2) + 'px; width:' + this.diameter + 'px; height:' + this.diameter + 'px"></div>';
+        var elem = document.createElement('div');
+        elem.id = this.id;
+        elem.className = "coronaVirus";
+        elem.style.cssText = 'left:' + (this.positionX - this.diameter / 2) + 'px; top:' + (this.positionY - this.diameter / 2) + 'px; width:' + this.diameter + 'px; height:' + this.diameter + 'px';
+        document.body.appendChild(elem);
         //create virusSpikes
         for (var a = 0; a < this.spikeCount; a++) {
             var angle = 360 / this.spikeCount * a;
-            var spike = new Spike(this.id, this.diameter, this.spikeCount, angle);
+            var spike = new Spike(this.id, this.diameter, this.spikeCount, angle, a);
         }
         return this.id;
     };
     return CoronaVirus;
 }());
 var Spike = /** @class */ (function () {
-    function Spike(id, diameter, count, angle) {
+    function Spike(id, diameter, count, angle, order) {
         this.id = id;
         this.diameter = diameter;
         this.count = count;
         this.angle = angle;
+        this.order = order;
         this.create();
     }
     Spike.prototype.create = function () {
@@ -37,7 +42,11 @@ var Spike = /** @class */ (function () {
         var dia = this.diameter / (this.count / 2);
         var top = posX + Math.sin(this.angle * Math.PI / 180) * (this.diameter / 2 + dia / 2) - dia / 2;
         var left = posY + Math.cos(this.angle * Math.PI / 180) * (this.diameter / 2 + dia / 2) - dia / 2;
-        document.getElementById(this.id).innerHTML += '<div class="spike" style="top:' + top + 'px; left:' + left + 'px; width: ' + dia + 'px; height: ' + dia + 'px"></div>';
+        //draw virusBody
+        var elem = document.createElement('div');
+        elem.className = "spike";
+        elem.style.cssText = 'animation-delay: ' + this.order / this.count + 's; top:' + top + 'px; left:' + left + 'px; width: ' + dia + 'px; height: ' + dia + 'px';
+        document.getElementById(this.id).appendChild(elem);
     };
     return Spike;
 }());

@@ -2,6 +2,11 @@
     border-radius: 50%;
     background: red;
     position: absolute;
+    animation: fadeIn linear 1s;
+    animation-iteration-count: 1;
+    opacity: 0.8;
+    transition: all ease-in-out 0.2s;
+    transform: scale(01);
 }
 
 .spike {
@@ -9,6 +14,23 @@
     background: black;
     position: absolute;
     border-radius: 50%;
+    animation: fadeIn linear 1s forwards;
+    animation-iteration-count: 1;
+    opacity:0;
+}
+
+.coronaVirus:hover {
+    transform: scale(0.5);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 0.8;
+    }
 }
 
 html,

@@ -16,11 +16,16 @@ class CoronaVirus {
     }
     create() {
         //draw virusBody
-        document.body.innerHTML += '<div id="' + this.id + '" class="coronaVirus" style="left:' + (this.positionX - this.diameter / 2) + 'px; top:' + (this.positionY - this.diameter / 2) + 'px; width:' + this.diameter + 'px; height:' + this.diameter + 'px"></div>';
+        let elem = document.createElement('div');
+        elem.id = this.id;
+        elem.className = "coronaVirus";
+        elem.style.cssText = 'left:' + (this.positionX - this.diameter / 2) + 'px; top:' + (this.positionY - this.diameter / 2) + 'px; width:' + this.diameter + 'px; height:' + this.diameter + 'px';
+        document.body.appendChild(elem);
+
         //create virusSpikes
-        for (let a = 0; a < this.spikeCount; a++) {
+        for (let a : number = 0; a < this.spikeCount; a++) {
             let angle: number = 360 / this.spikeCount * a;
-            let spike: Spike = new Spike(this.id, this.diameter, this.spikeCount, angle);
+            let spike: Spike = new Spike(this.id, this.diameter, this.spikeCount, angle, a);
         }
         return this.id;
     }
@@ -30,12 +35,14 @@ class Spike {
     private diameter: number;
     private angle: number;
     private count: number;
+    private order: number;
 
-    constructor(id: string, diameter: number, count: number, angle: number) {
+    constructor(id: string, diameter: number, count: number, angle: number, order: number) {
         this.id = id;
         this.diameter = diameter;
         this.count = count;
         this.angle = angle;
+        this.order = order;
         this.create();
     }
     create() {
@@ -46,7 +53,12 @@ class Spike {
         let dia: number = this.diameter / (this.count / 2);
         let top: number = posX + Math.sin(this.angle * Math.PI / 180) * (this.diameter / 2 + dia / 2) - dia / 2;
         let left: number = posY + Math.cos(this.angle * Math.PI / 180) * (this.diameter / 2 + dia / 2) - dia / 2;
-        document.getElementById(this.id).innerHTML += '<div class="spike" style="top:' + top + 'px; left:' + left + 'px; width: ' + dia + 'px; height: ' + dia + 'px"></div>';
+
+        //draw virusBody
+        let elem = document.createElement('div');
+        elem.className = "spike";
+        elem.style.cssText = 'animation-delay: '+this.order/this.count+'s; top:' + top + 'px; left:' + left + 'px; width: ' + dia + 'px; height: ' + dia + 'px';
+        document.getElementById(this.id).appendChild(elem);
     }
 }
 //

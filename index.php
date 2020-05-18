@@ -16,7 +16,7 @@
   // let's do it...
   //
   for ($a = 0; $a < 15; $a++) {
-    $coronaVirus = new CoronaVirus(getRndInteger(0, 1000), getRndInteger(0, 500), getRndInteger(50, 400), getRndInteger(6, 32));
+    $coronaVirus = new CoronaVirus(rand(0, 1000), rand(0, 500), rand(50, 400), rand(6, 32));
     $id = $coronaVirus->create();
   }
   ?>
