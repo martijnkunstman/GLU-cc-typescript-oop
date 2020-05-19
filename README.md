@@ -11,3 +11,11 @@ npm run tsc -- --init
 npm run tsc //compile .ts files to .js files
 
 //
+
+online:
+
+JavaScript version (compiled from TypeScript)
+https://www.kunstman.nl/corona/index.html
+
+PHP version
+https://www.kunstman.nl/corona/index.php
